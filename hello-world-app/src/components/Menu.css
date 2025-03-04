@@ -1,0 +1,32 @@
+/* Центрирование контейнера меню */
+.menu-container {
+    display: flex;
+    justify-content: center; /* Горизонтальное центрирование */
+    align-items: center; /* Вертикальное центрирование */
+    height: 100vh; /* Высота на весь экран */
+  }
+  
+  /* Стили для списка меню */
+  .menu-list {
+    list-style: none; /* Убираем маркеры списка */
+    padding: 0;
+    margin: 0;
+    text-align: center; /* Центрируем текст */
+  }
+  
+  /* Стили для пунктов меню */
+  .menu-list li {
+    margin: 15px 0; /* Отступы между пунктами */
+  }
+  
+  /* Стили для ссылок */
+  .menu-list a {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: inherit; /* Наследуем цвет текста */
+    font-size: 1.2em; /* Размер текста */
+    transition: color 0.3s ease; /* Плавное изменение цвета */
+  }
+  
+  .menu-list a:hover {
+    color: #007bff; /* Цвет при наведении */
+  }

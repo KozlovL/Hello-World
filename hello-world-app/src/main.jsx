@@ -1,10 +1,19 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { ThemeProvider } from './components/ThemeContext';
+import App from './App';
+import store from './redux/store';
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+// Создаем корневой элемент
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+// Рендерим приложение
+root.render(
+  <Provider store={store}>
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  </Provider>
+);
