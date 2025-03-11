@@ -1,0 +1,8 @@
+/* components/Content.css */
+.content-container {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center; /* Центрирование по вертикали */
+    min-height: auto; /* Минимальная высота (занимает столько, сколько нужно) */
+    padding: 20px; /* Отступы для контента */
+  }

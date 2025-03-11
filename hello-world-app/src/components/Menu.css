@@ -1,32 +1,35 @@
-/* Центрирование контейнера меню */
-.menu-container {
-    display: flex;
-    justify-content: center; /* Горизонтальное центрирование */
-    align-items: center; /* Вертикальное центрирование */
-    height: 100vh; /* Высота на весь экран */
+/* Светлая тема */
+.menu-container.light {
+    background-color: #ffffff;
+    color: #000000;
   }
   
-  /* Стили для списка меню */
+  /* Темная тема */
+  .menu-container.dark {
+    background-color: #333333;
+    color: #ffffff;
+  }
+  
   .menu-list {
-    list-style: none; /* Убираем маркеры списка */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    list-style: none;
     padding: 0;
-    margin: 0;
-    text-align: center; /* Центрируем текст */
+    gap: 10px;
   }
   
-  /* Стили для пунктов меню */
-  .menu-list li {
-    margin: 15px 0; /* Отступы между пунктами */
+  .menu-link {
+    text-decoration: none;
+    font-weight: bold;
   }
   
-  /* Стили для ссылок */
-  .menu-list a {
-    text-decoration: none; /* Убираем подчеркивание */
-    color: inherit; /* Наследуем цвет текста */
-    font-size: 1.2em; /* Размер текста */
-    transition: color 0.3s ease; /* Плавное изменение цвета */
+  /* Светлая тема для ссылок */
+  .menu-container.light .menu-link {
+    color: #007bff;
   }
   
-  .menu-list a:hover {
-    color: #007bff; /* Цвет при наведении */
+  /* Темная тема для ссылок */
+  .menu-container.dark .menu-link {
+    color: #bb86fc;
   }
