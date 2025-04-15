@@ -1,47 +1,62 @@
-// src/components/Lab6.jsx
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchFeedbacks, addFeedback, updateFeedback, deleteFeedback } from '../redux/feedbackSlice';
-import useLoginState from '../hooks/useLoginState';
+import React, { useState, useEffect } from 'react';
 import FeedbackForm from '../components/FeedbackForm';
 import FeedbackList from '../components/FeedbackList';
 
 const Lab6 = () => {
-  const { username } = useLoginState();
-  const dispatch = useDispatch();
+  const [feedbacks, setFeedbacks] = useState([]);
+  const [editingFeedback, setEditingFeedback] = useState(null);
 
-  // Получаем данные из состояния Redux
-  const feedbacks = useSelector((state) => state.feedback.feedbacks);
-  const loading = useSelector((state) => state.feedback.loading);
-  const error = useSelector((state) => state.feedback.error);
-
-  const [editingFeedback, setEditingFeedback] = React.useState(null); // Для редактирования отзыва
-
+  // Получение отзывов
   useEffect(() => {
-    dispatch(fetchFeedbacks());  // Загружаем отзывы при монтировании компонента
-  }, [dispatch]);
+    fetch('http://localhost:3000/feedbacks')
+      .then((res) => res.json())
+      .then((data) => {
+        // Убираем дублирующиеся отзывы (если они есть)
+        const uniqueFeedbacks = Array.from(new Set(data.map(a => a.id)))
+          .map(id => {
+            return data.find(a => a.id === id)
+          });
+        setFeedbacks(uniqueFeedbacks);
+      });
+  }, []); // Зависимость пустая, значит запрос выполняется только один раз
 
+  // Добавление или обновление отзыва
   const handleAddFeedback = (data) => {
     if (editingFeedback) {
-      // Обновление отзыва
-      dispatch(updateFeedback({ id: editingFeedback.id, feedback: data.feedback }));
-      setEditingFeedback(null);
+      // Редактирование
+      fetch(`http://localhost:3000/feedbacks/${editingFeedback.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...editingFeedback, feedback: data.feedback }),
+      })
+        .then((res) => res.json())
+        .then((updated) => {
+          setFeedbacks((prev) =>
+            prev.map((f) => (f.id === updated.id ? updated : f))
+          );
+          setEditingFeedback(null);
+        });
     } else {
       // Добавление нового отзыва
-      dispatch(addFeedback({ name: username || 'Anonymous', feedback: data.feedback }));
+      fetch('http://localhost:3000/feedbacks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: 'Anonymous', feedback: data.feedback }),
+      })
+        .then((res) => res.json())
+        .then((newFeedback) => setFeedbacks((prev) => [...prev, newFeedback]));
     }
   };
 
   const handleDeleteFeedback = (id) => {
-    dispatch(deleteFeedback(id));  // Удаляем отзыв
+    fetch(`http://localhost:3000/feedbacks/${id}`, { method: 'DELETE' }).then(() => {
+      setFeedbacks((prev) => prev.filter((f) => f.id !== id));
+    });
   };
 
   const handleEditFeedback = (feedback) => {
-    setEditingFeedback(feedback);  // Устанавливаем редактируемый отзыв
+    setEditingFeedback(feedback);
   };
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
 
   return (
     <div>
