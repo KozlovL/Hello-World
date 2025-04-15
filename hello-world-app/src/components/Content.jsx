@@ -4,6 +4,7 @@ import Menu from './Menu';
 import Lab2 from '../labs/Lab2';
 import Lab4 from '../labs/Lab4';
 import Lab5 from '../labs/Lab5';
+import Lab6 from '../labs/Lab6';
 import './Content.css'; // Подключаем стили
 
 const Content = () => {
@@ -19,6 +20,7 @@ const Content = () => {
           <Route path="/lab-2" element={<Lab2 />} />
           <Route path="/lab-4" element={<Lab4 />} />
           <Route path="/lab-5" element={<Lab5 />} />
+          <Route path="/lab-6" element={<Lab6 />} />
         </Routes>
       </div>
     </Router>

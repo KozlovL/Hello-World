@@ -4,7 +4,7 @@ import { useTheme } from '../components/ThemeContext';
 import { increment, decrement } from '../redux/actions';
 
 const Lab4 = () => {
-  const count = useSelector((state) => state.counter);
+  const count = useSelector((state) => state.counter.counter); // Исправили эту строку
   const dispatch = useDispatch();
   const { theme } = useTheme(); // Получаем текущую тему
 

@@ -1,0 +1,21 @@
+{
+  "feedbacks": [
+    {
+      "id": "1",
+      "name": "User1",
+      "feedback": "Great service!"
+    },
+    {
+      "id": "2",
+      "name": "User2",
+      "feedback": "Could be better."
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin"
+    }
+  ]
+}

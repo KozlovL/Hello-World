@@ -29,6 +29,11 @@ function Menu() {
             Лабораторная работа 5
           </Link>
         </li>
+        <li>
+          <Link to="/lab-6" className="menu-link">
+            Лабораторная работа 6
+          </Link>
+          </li>
       </ul>
     </nav>
   );
