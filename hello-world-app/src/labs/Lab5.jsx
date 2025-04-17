@@ -12,23 +12,53 @@ const Lab5 = () => {
   const [showRegister, setShowRegister] = useState(false); // Состояние для переключения между формами
 
   // Обработчик авторизации
-  const handleLogin = useCallback((data) => {
-    console.log('Авторизация:', data);
-    login(data.username, data.password); // Вызываем функцию входа
+  const handleLogin = useCallback((username, password) => {
+    console.log("Попытка входа с данными:", username, password); // Добавим отладочное сообщение
+    
+    // Получаем список пользователей из localStorage
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    console.log("Список пользователей в localStorage:", users); // Логируем список пользователей
+
+    // Ищем пользователя с таким именем и паролем
+    const user = users.find((user) => user.username === username && user.password === password);
+    console.log("Найденный пользователь:", user); // Логируем, что было найдено
+
+    if (user) {
+      // Если пользователь найден, выполняем вход
+      login(username, password);
+    } else {
+      alert('Неверное имя пользователя или пароль');
+    }
   }, [login]);
 
   // Обработчик регистрации
   const handleRegister = useCallback((data) => {
-    console.log('Регистрация:', data);
-    const users = JSON.parse(localStorage.getItem('users')) || []; // Получаем список пользователей
-    users.push({ username: data.username, password: data.password }); // Добавляем нового пользователя
-    localStorage.setItem('users', JSON.stringify(users)); // Сохраняем обновленный список
-    login(data.username, data.password); // Авторизуем пользователя после регистрации
+    const { username, password } = data;
+    console.log("Регистрация с данными:", username, password); // Добавляем отладочное сообщение
+    
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    
+    // Проверяем, есть ли уже пользователь с таким именем
+    const userExists = users.some((user) => user.username === username);
+    console.log("Пользователь с таким именем уже существует:", userExists); // Логируем, если такой пользователь уже есть
+    
+    if (userExists) {
+      alert('Пользователь с таким именем уже существует');
+      return;
+    }
+    
+    // Добавляем нового пользователя
+    users.push({ username, password });
+    localStorage.setItem('users', JSON.stringify(users));
+    
+    console.log("Обновленный список пользователей:", users); // Логируем обновленный список пользователей
+    
+    // Авторизуем пользователя после регистрации
+    login(username, password);
   }, [login]);
 
   // Обработчик отправки отзыва
   const handleFeedbackSubmit = useCallback((data) => {
-    console.log('Отзыв:', data);
     const feedbackWithUsername = { name: username, feedback: data.feedback }; // Добавляем имя пользователя к отзыву
     setFeedbacks((prev) => [...prev, feedbackWithUsername]); // Обновляем список отзывов
   }, [username]);

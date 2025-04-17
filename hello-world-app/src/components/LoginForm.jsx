@@ -9,10 +9,17 @@ const LoginForm = ({ onSubmit, onToggleRegister }) => {
     formState: { errors },
   } = useForm(); // Используем react-hook-form для управления формой
 
+  const onFormSubmit = (data) => {
+    console.log("Данные формы для входа:", data); // Логируем передаваемые данные
+    const { username, password } = data; // Деструктурируем данные
+    onSubmit(username, password); // Передаем два параметра в onSubmit
+  };
+  
+
   return (
     <div>
       <h1>Авторизация</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onFormSubmit)}>
         <div>
           <label>Имя пользователя:</label>
           <input

@@ -2,25 +2,30 @@
   "feedbacks": [
     {
       "id": "1",
-      "name": "User1",
+      "username": "User1",
       "feedback": "Great service!"
     },
     {
-      "id": "2",
-      "name": "User2",
-      "feedback": "Could be better."
+      "id": "12f3",
+      "username": "admin1",
+      "feedback": "123"
     },
     {
-      "id": "7345",
-      "name": "Anonymous",
+      "id": "9ad8",
+      "username": "1",
       "feedback": "1"
     }
   ],
   "users": [
     {
       "id": "1",
-      "username": "admin",
+      "username": "admin1",
       "password": "admin"
+    },
+    {
+      "id": "0667",
+      "username": "1",
+      "password": "111111"
     }
   ]
 }

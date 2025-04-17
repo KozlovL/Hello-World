@@ -7,12 +7,26 @@ const RegisterForm = ({ onSubmit, onToggleLogin }) => {
     register,
     handleSubmit,
     formState: { errors },
+    watch, // для отслеживания значений полей
   } = useForm(); // Используем react-hook-form для управления формой
+
+  // Получаем значения пароля и подтверждения пароля для проверки
+  const password = watch('password');
+  const confirmPassword = watch('confirmPassword');
+
+  // Функция для проверки совпадения паролей
+  const handleRegisterSubmit = (data) => {
+    if (data.password !== data.confirmPassword) {
+      alert('Пароли не совпадают');
+      return;
+    }
+    onSubmit(data); // Если пароли совпадают, передаем данные на регистрацию
+  };
 
   return (
     <div>
       <h1>Регистрация</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(handleRegisterSubmit)}>
         <div>
           <label>Имя пользователя:</label>
           <input
