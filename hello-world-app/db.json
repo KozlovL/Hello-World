@@ -6,26 +6,21 @@
       "feedback": "Great service!"
     },
     {
-      "id": "12f3",
-      "username": "admin1",
-      "feedback": "123"
+      "id": "f809",
+      "username": "Anonymous",
+      "feedback": "1"
     },
     {
-      "id": "9ad8",
-      "username": "1",
-      "feedback": "1"
+      "id": "7cef",
+      "username": "Anonymous",
+      "feedback": "12"
     }
   ],
   "users": [
     {
       "id": "1",
-      "username": "admin1",
+      "username": "admin",
       "password": "admin"
-    },
-    {
-      "id": "0667",
-      "username": "1",
-      "password": "111111"
     }
   ]
 }

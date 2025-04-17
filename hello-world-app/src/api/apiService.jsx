@@ -32,22 +32,28 @@ const fetchData = async (endpoint, method = 'GET', data = null) => {
 
 export const authAPI = {
   login: (username, password) => {
-    console.log('Login request - Username:', username);
-    console.log('Login request - Password:', password);
-
     const query = new URLSearchParams({ username, password }).toString();
-    console.log('Request URL:', `/users?${query}`);
     return fetchData(`/users?${query}`, 'GET');
   },
-  register: (username, password) => fetchData('/users', 'POST', { username, password }),
-  updateProfile: (oldUsername, newUsername) => {
-    return fetchData(`/users?username=${oldUsername}`, 'GET')
-      .then(users => {
-        const user = users[0];  // Получаем текущего пользователя по старому никнейму
-        return fetchData(`/users/${user.id}`, 'PUT', { ...user, username: newUsername });  // Обновляем только никнейм
-      });
+
+  register: (username, password) =>
+    fetchData('/users', 'POST', { username, password }),
+
+  updateProfile: async (oldUsername, newUsername) => {
+    try {
+      const users = await fetchData(`/users?username=${oldUsername}`, 'GET');
+      if (!users || users.length === 0) {
+        throw new Error(`Пользователь "${oldUsername}" не найден`);
+      }
+      const user = users[0];
+      return fetchData(`/users/${user.id}`, 'PUT', { ...user, username: newUsername });
+    } catch (error) {
+      console.error("Ошибка при обновлении профиля:", error.message);
+      throw error;
+    }
   }
 };
+
 
 
 

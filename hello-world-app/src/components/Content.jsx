@@ -28,11 +28,11 @@ const Content = () => {
         {/* Страница контактов */}
         <Route path="/contact" element={<ContactPage />} />
 
-        {/* Остальные страницы */}
+        {/* Лабораторные работы */}
         <Route path="/lab-2" element={<Lab2 />} />
         <Route path="/lab-4" element={<Lab4 />} />
         <Route path="/lab-5" element={<Lab5 />} />
-        <Route path="/lab-6" element={<Lab6 />} />
+        <Route path="/lab-6" element={<Lab6 />} />  {/* Страница профиля пользователя */}
       </Routes>
     </div>
   );
