@@ -64,3 +64,20 @@ export const feedbackAPI = {
   updateFeedback: (id, data) => fetchData(`/feedbacks/${id}`, 'PUT', data),
   deleteFeedback: (id) => fetchData(`/feedbacks/${id}`, 'DELETE'),
 };
+
+export const usersAPI = {
+  getUsers: async () => {
+    const res = await fetch('http://localhost:3000/users');
+    return res.json();
+  },
+  deleteUser: async (id) => {
+    return fetch(`http://localhost:3000/users/${id}`, { method: 'DELETE' });
+  },
+  updateUser: async (id, updates) => {
+    return fetch(`http://localhost:3000/users/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updates),
+    });
+  },
+};

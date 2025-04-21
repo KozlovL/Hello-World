@@ -5,7 +5,7 @@ const FeedbackList = ({ feedbacks, onDelete, onEdit }) => {
       <ul>
         {feedbacks.map((feedback) => (
           <li key={feedback.id}>
-            <strong>{feedback.username || 'Anonymous'}</strong>: {feedback.feedback}
+            <strong>{feedback.name || feedback.username || 'Anonymous'}</strong>: {feedback.feedback}
             <button onClick={() => onEdit(feedback)}>Редактировать</button>
             <button onClick={() => onDelete(feedback.id)}>Удалить</button>
           </li>

@@ -1,26 +1,26 @@
 {
-  "feedbacks": [
-    {
-      "id": "1",
-      "username": "User1",
-      "feedback": "Great service!"
-    },
-    {
-      "id": "f809",
-      "username": "Anonymous",
-      "feedback": "1"
-    },
-    {
-      "id": "7cef",
-      "username": "Anonymous",
-      "feedback": "12"
-    }
-  ],
   "users": [
     {
       "id": "1",
       "username": "admin",
-      "password": "admin"
+      "password": "admin",
+      "role": "admin",
+      "isBlocked": false
+    },
+    {
+      "id": "2",
+      "username": "user1",
+      "password": "123",
+      "role": "user",
+      "isBlocked": false
+    }
+  ],
+  "feedbacks": [
+    {
+      "id": "f1",
+      "username": "admin",
+      "feedback": "Nice work!",
+      "isBlocked": false
     }
   ]
 }

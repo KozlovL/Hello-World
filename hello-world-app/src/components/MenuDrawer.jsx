@@ -9,6 +9,8 @@ const labLinks = [
   { label: 'Лабораторная 4', path: '/lab-4' },
   { label: 'Лабораторная 5', path: '/lab-5' },
   { label: 'Лабораторная 6', path: '/lab-6' },
+  { label: 'Лабораторная 8', path: '/lab-8' },
+  { label: 'Лабораторная 9', path: '/lab-9' }
 ];
 
 export default function MenuDrawer({ open, onClose }) {

@@ -1,4 +1,3 @@
-// components/Content.js
 import React from "react";
 import { Route, Routes } from "react-router-dom"; // Для маршрутизации
 import Menu from "./Menu"; // Меню, которое будет открываться по кнопке
@@ -10,6 +9,8 @@ import Lab2 from "../labs/Lab2"; // Лабораторная работа 2
 import Lab4 from "../labs/Lab4"; // Лабораторная работа 4
 import Lab5 from "../labs/Lab5"; // Лабораторная работа 5
 import Lab6 from "../labs/Lab6"; // Лабораторная работа 6
+import Lab8 from "../labs/Lab8"; // Лабораторная работа 8
+import Lab9 from "../labs/Lab9/Lab9"; // Лабораторная работа 9
 import "./Content.css"; // Подключаем стили
 
 const Content = () => {
@@ -32,7 +33,11 @@ const Content = () => {
         <Route path="/lab-2" element={<Lab2 />} />
         <Route path="/lab-4" element={<Lab4 />} />
         <Route path="/lab-5" element={<Lab5 />} />
-        <Route path="/lab-6" element={<Lab6 />} />  {/* Страница профиля пользователя */}
+        <Route path="/lab-6" element={<Lab6 />} /> {/* Страница профиля пользователя */}
+        
+        {/* Добавляем маршрут для Лабораторной работы 8 */}
+        <Route path="/lab-8" element={<Lab8 />} />
+        <Route path="/lab-9" element={<Lab9 />} />
       </Routes>
     </div>
   );

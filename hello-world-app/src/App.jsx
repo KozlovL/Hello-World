@@ -18,7 +18,7 @@ const App = () => {
 
   return (
     <div className={theme}>
-      <Router> {/* 👈 Оберни ВСЁ в Router */}
+      <Router>
         <Header onMenuClick={handleDrawerToggle} />
         <MenuDrawer open={isDrawerOpen} onClose={handleDrawerToggle} />
         <Content />
